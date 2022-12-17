@@ -8,3 +8,15 @@ And then
 ng serve 
 
 Link : https://stackoverflow.com/questions/50212878/running-existing-angular-project-locally
+
+--------------------------------------------------------------------------------------------------
+
+https://www.angularjswiki.com/angular/port-4200-is-already-in-use-use-port-to-specify-a-different-port-error/
+
+4200 Already in use issue:
+
+Kill the process using the below mentioned command
+
+sudo lsof -t -i tcp:4200 | xargs kill -9
+
+--------------------------------------------------------------------------------------------------
