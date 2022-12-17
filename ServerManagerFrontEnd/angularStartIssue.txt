@@ -1,0 +1,10 @@
+npm uninstall -g @angular/cli
+npm cache verify
+npm install -g @angular/cli@next
+npm update
+
+And then
+
+ng serve 
+
+Link : https://stackoverflow.com/questions/50212878/running-existing-angular-project-locally
