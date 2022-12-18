@@ -63,6 +63,21 @@ public class ServerServiceImpl implements ServerService {
     }
 
     @Override
+    public Server update(Long id,Server server) {
+        log.info("Updating server: {}", server.getName());
+        Server updateServer = get(id);
+
+        updateServer.setIpAddress(server.getIpAddress());
+        updateServer.setName(server.getName());
+        updateServer.setMemory(server.getMemory());
+        updateServer.setType(server.getType());
+        updateServer.setImageUrl(server.getImageUrl());
+        updateServer.setStatus(server.getStatus());
+
+        return serverRepository.save(updateServer);
+    }
+
+    @Override
     public Boolean delete(Long id) {
         log.info("Deleting server by id: {}", id);
         serverRepository.deleteById(id);

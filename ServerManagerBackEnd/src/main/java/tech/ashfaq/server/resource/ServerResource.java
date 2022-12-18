@@ -1,6 +1,7 @@
 package tech.ashfaq.server.resource;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tech.ashfaq.server.model.Response;
@@ -58,6 +59,19 @@ public class ServerResource {
                         .timeStamp(now())
                         .data(of("server", serverServiceImpl.create(server)))
                         .message("Server created")
+                        .status(CREATED)
+                        .statusCode(CREATED.value())
+                        .build()
+        );
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Response> updateServer(@PathVariable("id") Long id, @RequestBody @Valid Server server) throws IOException{
+        return ResponseEntity.ok(
+                Response.builder()
+                        .timeStamp(now())
+                        .data(of("server", serverServiceImpl.update(id, server)))
+                        .message("Server updated")
                         .status(CREATED)
                         .statusCode(CREATED.value())
                         .build()
