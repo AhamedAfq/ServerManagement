@@ -78,6 +78,19 @@ public class ServerResource {
         );
     }
 
+    @PutMapping("/update")
+    public ResponseEntity<Response> updateServer(@RequestBody Server server){
+        return ResponseEntity.ok(
+                Response.builder()
+                        .timeStamp(now())
+                        .data(of("server", serverServiceImpl.update(server)))
+                        .message("Server updated")
+                        .status(CREATED)
+                        .statusCode(CREATED.value())
+                        .build()
+        );
+    }
+
     @GetMapping("/get/{id}")
     public ResponseEntity<Response> getServer(@PathVariable("id") Long id) throws IOException {
         return ResponseEntity.ok(
