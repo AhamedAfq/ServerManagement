@@ -29,6 +29,12 @@ private readonly apiUrl = 'http://localhost:8080';
     tap(console.log),
     catchError(this.handleError)); 
 
+  update$ =  (server: Server) => <Observable<CustomResponse>>
+  this.http.post<CustomResponse>(`${this.apiUrl}/server/update`, server)
+  .pipe(
+    tap(console.log),
+    catchError(this.handleError));   
+
   ping$ =  (ipAddress: string) => <Observable<CustomResponse>>
   this.http.get<CustomResponse>(`${this.apiUrl}/server/ping/${ipAddress}`)
   .pipe(

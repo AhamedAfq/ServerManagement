@@ -8,6 +8,7 @@ import { CustomResponse } from './interface/custom-response';
 import { Server } from './interface/server';
 import { NotificationService } from './service/notification.service';
 import { ServerService } from './service/server.service';
+import { server } from 'typescript';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +25,7 @@ export class AppComponent {
   filterStatus$ = this.filterSubject.asObservable();
   private isLoading = new BehaviorSubject<boolean>(false);
   isLoading$ = this.isLoading.asObservable();
+  editServer: Server;
   
 
   constructor(private serverService: ServerService, private notifier: NotificationService){}
@@ -119,6 +121,19 @@ export class AppComponent {
           return of({ dataState: DataState.ERROR_STATE, error });
         })
       );
+  }
+  public onOpenModal(server: Server, mode: string): void {
+    const container = document.getElementById('main-container');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.style.display = 'none';
+    button.setAttribute('data-toggle', 'modal');
+    if (mode === 'edit') {
+      this.editServer = server;
+      button.setAttribute('data-target', '#editServerModal');
+    }
+    container.appendChild(button);
+    button.click();
   }
 
   printReport(): void {
