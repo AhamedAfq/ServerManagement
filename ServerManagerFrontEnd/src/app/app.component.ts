@@ -8,7 +8,6 @@ import { CustomResponse } from './interface/custom-response';
 import { Server } from './interface/server';
 import { NotificationService } from './service/notification.service';
 import { ServerService } from './service/server.service';
-import { server } from 'typescript';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +24,8 @@ export class AppComponent {
   filterStatus$ = this.filterSubject.asObservable();
   private isLoading = new BehaviorSubject<boolean>(false);
   isLoading$ = this.isLoading.asObservable();
-  editServer: Server;
+  public editServer: Server;
+  public updatedServer: Server;
   
 
   constructor(private serverService: ServerService, private notifier: NotificationService){}
@@ -88,6 +88,29 @@ export class AppComponent {
         })
       );
 }
+
+updateServer(serverForm: NgForm): void {
+  this.isLoading.next(true);
+  this.appState$ = this.serverService.update$(serverForm.value as Server)
+    .pipe(
+      map(response => {
+        this.dataSubject.next(
+          {...response, data: { servers: [response.data.server, ...this.dataSubject.value.data.servers] } }
+        );
+        this.notifier.onDefault(response.message);
+        document.getElementById('closeEditModal').click();
+        this.isLoading.next(false);
+        serverForm.resetForm({ status: this.Status.SERVER_DOWN });
+        return { dataState: DataState.LOADED_STATE, appData: this.dataSubject.value }
+      }),
+      startWith({ dataState: DataState.LOADED_STATE, appData: this.dataSubject.value }),
+      catchError((error: string) => {
+        this.isLoading.next(false);
+        this.notifier.onError(error);
+        return of({ dataState: DataState.ERROR_STATE, error });
+      })
+    );
+  }
 
   filterServers(status: Status): void {
     this.appState$ = this.serverService.filter$(status, this.dataSubject.value)

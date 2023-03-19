@@ -30,7 +30,7 @@ private readonly apiUrl = 'http://localhost:8080';
     catchError(this.handleError)); 
 
   update$ =  (server: Server) => <Observable<CustomResponse>>
-  this.http.post<CustomResponse>(`${this.apiUrl}/server/update`, server)
+  this.http.put<CustomResponse>(`${this.apiUrl}/server/update`, server)
   .pipe(
     tap(console.log),
     catchError(this.handleError));   

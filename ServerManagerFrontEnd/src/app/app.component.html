@@ -153,7 +153,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- (ngSubmit)="saveServer(serverForm)" -->
-            <form #serverForm="ngForm">
+            <form #editForm="ngForm" >
                 <div class="modal-header">
                     <h4 class="modal-title">Update Server</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -199,12 +199,11 @@
                         <span *ngIf="isLoading$ | async">Saving...</span>
                         <span *ngIf="!(isLoading$ | async)">Update</span>
                     </button> -->
-                    <button (click)="saveServer(serverForm)" data-dismiss="modal" class="btn btn-primary" >Save</button>
+                    <button (click)="updateServer(editForm)" data-dismiss="modal" class="btn btn-primary" >Save</button>
                 </div>
             </form>
         </div>
     </div>
   </div>
-
 
   <notifier-container></notifier-container>
