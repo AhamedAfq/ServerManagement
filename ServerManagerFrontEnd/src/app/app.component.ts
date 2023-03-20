@@ -156,7 +156,6 @@ updateServer(serverForm: NgForm): void {
     button.style.display = 'none';
     button.setAttribute('data-toggle', 'modal');
     if (mode === 'edit') {
-      debugger
       this.editServer = server;
       button.setAttribute('data-target', '#editServerModal');
     }
