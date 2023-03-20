@@ -90,8 +90,12 @@ export class AppComponent {
 }
 
 updateServer(serverForm: NgForm): void {
+  debugger
+  let value = serverForm.value;
+  value.id = this.editServer.id;
+  value.imageUrl = this.editServer.imageUrl
   this.isLoading.next(true);
-  this.appState$ = this.serverService.update$(serverForm.value as Server)
+  this.appState$ = this.serverService.update$(value)
     .pipe(
       map(response => {
         this.dataSubject.next(
@@ -100,7 +104,7 @@ updateServer(serverForm: NgForm): void {
         this.notifier.onDefault(response.message);
         document.getElementById('closeEditModal').click();
         this.isLoading.next(false);
-        serverForm.resetForm({ status: this.Status.SERVER_DOWN });
+        // serverForm.resetForm({ status: this.Status.SERVER_DOWN });
         return { dataState: DataState.LOADED_STATE, appData: this.dataSubject.value }
       }),
       startWith({ dataState: DataState.LOADED_STATE, appData: this.dataSubject.value }),
@@ -152,6 +156,7 @@ updateServer(serverForm: NgForm): void {
     button.style.display = 'none';
     button.setAttribute('data-toggle', 'modal');
     if (mode === 'edit') {
+      debugger
       this.editServer = server;
       button.setAttribute('data-target', '#editServerModal');
     }

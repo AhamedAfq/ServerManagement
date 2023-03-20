@@ -8,5 +8,4 @@ export interface Server {
     type: string;
     imageUrl: string;
     status: Status
-
 }
