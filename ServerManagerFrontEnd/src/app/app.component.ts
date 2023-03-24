@@ -97,9 +97,7 @@ updateServer(serverForm: NgForm): void {
   this.appState$ = this.serverService.update$(value)
     .pipe(
       map((response:any) => {
-        debugger
-        // response.data.server.findIndex(data => data.id === this.dataSubject.value.data.servers.id)
-        const index = this.dataSubject.value.data.servers.findIndex(data => data.id === response.data.server.id)
+        const index = this.dataSubject.value.data.servers.findIndex(data => data.id === response.data.server.id);
         this.dataSubject.value.data.servers[index] = response.data.server;
         this.dataSubject.next(
           {...response, data: { servers: this.dataSubject.value.data.servers } }
