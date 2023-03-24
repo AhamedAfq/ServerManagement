@@ -79,7 +79,7 @@ public class ServerResource {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Response> updateServer(@RequestBody Server server){
+    public ResponseEntity<Response> updateServer(@RequestBody @Valid Server server){
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
