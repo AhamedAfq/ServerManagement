@@ -90,16 +90,19 @@ export class AppComponent {
 }
 
 updateServer(serverForm: NgForm): void {
-  debugger
   let value = serverForm.value;
   value.id = this.editServer.id;
   value.imageUrl = this.editServer.imageUrl
   this.isLoading.next(true);
   this.appState$ = this.serverService.update$(value)
     .pipe(
-      map(response => {
+      map((response:any) => {
+        debugger
+        // response.data.server.findIndex(data => data.id === this.dataSubject.value.data.servers.id)
+        const index = this.dataSubject.value.data.servers.findIndex(data => data.id === response.data.server.id)
+        this.dataSubject.value.data.servers[index] = response.data.server;
         this.dataSubject.next(
-          {...response, data: { servers: [response.data.server, ...this.dataSubject.value.data.servers] } }
+          {...response, data: { servers: this.dataSubject.value.data.servers } }
         );
         this.notifier.onDefault(response.message);
         document.getElementById('closeEditModal').click();
