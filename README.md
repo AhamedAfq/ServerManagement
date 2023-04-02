@@ -54,7 +54,7 @@ This App has the following provisions
 
 
 
-**Add Server Pop up**
+**Add Server modal up**
 
 <img width="1512" alt="image" src="https://user-images.githubusercontent.com/57934160/229338036-40c32024-9492-4251-9729-e19b7ba463a1.png">
 
@@ -95,6 +95,6 @@ This App has the following provisions
 
 
 
-Sample Report
+**Sample Report**
 
 <img width="1511" alt="image" src="https://user-images.githubusercontent.com/57934160/229338256-2bc7d0f1-3528-4e6d-9e0d-bb92026d4b43.png">
