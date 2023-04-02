@@ -1,24 +1,14 @@
-**SERVER MANAGEMENT**
-
-
-A crud app built using springboot, angular and MySQL.
+**SERVER MANAGEMENT** - A crud app built using springboot, angular and MySQL.
 
 This App has the following provisions
 
   1.Listing all the available servers in the DB.
-  
   2.Adding a new server
-  
   3.Updating an existing server.
-  
   4.Ping a server.
-  
   5.Delete a server
-  
   6.Filters based on whether the server is UP or Down (Basically ping was a success or failure)
-  
   7.Download the report of .xls sheet which has the details of the all the available servers.
-  
   8.Notificatioins for all the above mentioned actions
 
 
